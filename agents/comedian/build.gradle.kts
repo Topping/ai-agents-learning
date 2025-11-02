@@ -1,5 +1,6 @@
 plugins {
     application
+    alias(libs.plugins.springBoot) apply true
     alias(libs.plugins.shadow) // optional: fat jar for local runs
     alias(libs.plugins.graalvm) apply true
     // Jib is applied from the root convention; you can also apply here explicitly if you prefer
@@ -19,12 +20,22 @@ application {
     mainClass.set("com.example.mas.comedian.ComedianApplication")
 }
 
+System.setProperty("java.io.tmpdir", "D:/temp")
+
 tasks.named<Jar>("jar") {
     manifest { attributes["Main-Class"] = application.mainClass.get() }
 }
 
 tasks.shadowJar {
     isZip64 = true
+}
+
+graalvmNative {
+    binaries {
+        named("main") {
+            buildArgs.add("--initialize-at-build-time=com.google.protobuf.RuntimeVersion\$RuntimeDomain")
+        }
+    }
 }
 
 // ---- Per-agent Jib overrides (optional) ----

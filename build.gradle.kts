@@ -33,16 +33,17 @@ subprojects {
 
     dependencies {
         add("implementation","org.slf4j:slf4j-api:2.0.17")
+        add("implementation", "org.springframework.grpc:spring-grpc-spring-boot-starter")
+        add("implementation", "io.grpc:grpc-services")
     }
 
     tasks.withType<Test> { useJUnitPlatform() }
 }
 
-// Apply Jib plugin and configure for agent subprojects only
 subprojects {
-    if (project.path.startsWith(":agents:")) {
+    val isAgentProject = project.path.startsWith(":agents:")
+    if (isAgentProject) {
         apply(plugin = "com.google.cloud.tools.jib")
-
         configure<com.google.cloud.tools.jib.gradle.JibExtension> {
             from {
                 image = "gcr.io/distroless/java25-debian13"

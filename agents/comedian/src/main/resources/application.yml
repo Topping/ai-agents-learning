@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: comedian-agent
+  grpc:
+    server.port: 9090
+  threads:
+    virtual.enabled: true
+
+agent.application:
+  url: 'http://localhost:9090'
