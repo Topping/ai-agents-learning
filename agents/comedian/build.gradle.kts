@@ -1,6 +1,7 @@
 plugins {
     application
     alias(libs.plugins.shadow) // optional: fat jar for local runs
+    alias(libs.plugins.graalvm) apply true
     // Jib is applied from the root convention; you can also apply here explicitly if you prefer
 }
 
@@ -15,11 +16,15 @@ dependencies {
 }
 
 application {
-    mainClass.set("com.example.agents.researcher.Main")
+    mainClass.set("com.example.mas.comedian.ComedianApplication")
 }
 
 tasks.named<Jar>("jar") {
     manifest { attributes["Main-Class"] = application.mainClass.get() }
+}
+
+tasks.shadowJar {
+    isZip64 = true
 }
 
 // ---- Per-agent Jib overrides (optional) ----

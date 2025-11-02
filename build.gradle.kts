@@ -1,21 +1,33 @@
+import io.spring.gradle.dependencymanagement.dsl.DependencyManagementExtension
+
 plugins {
     alias(libs.plugins.jib) apply false
+    alias(libs.plugins.springManagement) apply false
 }
 
+val springBootVersion = libs.versions.spring.boot.get()
+val springGrpcVersion = libs.versions.spring.grpc.get()
 subprojects {
-
     if (project.path.startsWith(":agents:")) {
         apply(plugin = "java")
     } else {
         apply(plugin = "java-library")
     }
 
+    apply(plugin = "io.spring.dependency-management")
     repositories { mavenCentral() }
 
     configure<JavaPluginExtension> {
         toolchain { 
             languageVersion.set(JavaLanguageVersion.of(25)) 
-            vendor.set(JvmVendorSpec.AMAZON)
+            vendor.set(JvmVendorSpec.GRAAL_VM)
+        }
+    }
+
+    configure<DependencyManagementExtension> {
+        imports {
+            mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
+            mavenBom("org.springframework.grpc:spring-grpc-dependencies:${springGrpcVersion}")
         }
     }
 
