@@ -1,0 +1,41 @@
+/.gradle/
+/.idea/
+/.vscode/
+/build/
+**/build/
+out/
+
+# Java / Kotlin
+*.class
+*.jar
+*.war
+*.ear
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.python-version
+.venv/
+venv/
+env/
+.uv/
+
+# Node
+node_modules/
+
+# Logs
+*.log
+
+# Environment files
+.env
+.env.*
+*.env
+
+# Editor / IDE
+*.iml
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+
