@@ -44,6 +44,8 @@ subprojects {
     val isAgentProject = project.path.startsWith(":agents:")
     if (isAgentProject) {
         apply(plugin = "com.google.cloud.tools.jib")
+        dependencies {
+        }
         configure<com.google.cloud.tools.jib.gradle.JibExtension> {
             from {
                 image = "gcr.io/distroless/java25-debian13"
@@ -67,8 +69,7 @@ subprojects {
                 ports = listOf("8080")
                 
                 labels = mapOf(
-                    "org.opencontainers.image.source" to "https://github.com/your-org/adk-monorepo",
-                    "org.opencontainers.image.revision" to (System.getenv("GITHUB_SHA") ?: "dev")
+                    "org.opencontainers.image.revision" to "dev"
                 )
             }
         }

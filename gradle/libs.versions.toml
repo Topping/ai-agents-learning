@@ -8,11 +8,15 @@ spring_boot = "3.5.7"
 spring_grpc = "0.12.0"
 protobuf    = "0.9.5"
 graalvm     = "0.11.2"
+lc4j        = "1.8.0"
 
 [libraries]
-
 adk-core    = { group = "com.google.adk", name = "google-adk", version.ref = "adk" }
 adk-dev     = { group = "com.google.adk", name = "google-adk-dev", version.ref = "adk" }
+adk-lc4j    = { group = "com.google.adk", name = "google-adk-langchain4j", version.ref = "adk" }
+lc4j-base   = { group = "dev.langchain4j", name = "langchain4j", version.ref = "lc4j" }
+lc4j-core   = { group = "dev.langchain4j", name = "langchain4j-core", version.ref = "lc4j" }
+lc4j-oai    = { group = "dev.langchain4j", name = "langchain4j-open-ai", version.ref = "lc4j" }
 
 [plugins]
 jib         = { id = "com.google.cloud.tools.jib", version.ref = "jib" }

@@ -15,15 +15,12 @@ public class A2AGrpcServerService extends GrpcHandler {
     private final RequestHandler requestHandler;
     private final AgentCard agentCard;
     private final Executor executor;
-    // private final CallContextFactory callContextFactory;
 
     @Autowired
-    //public A2AGrpcServerService(RequestHandler requestHandler, AgentCard agentCard, CallContextFactory callContextFactory) {
     public A2AGrpcServerService(RequestHandler requestHandler, AgentCard agentCard) {
         this.requestHandler = requestHandler;
         this.agentCard = agentCard;
         this.executor = Executors.newVirtualThreadPerTaskExecutor();
-        // this.callContextFactory = callContextFactory;
     }
 
 

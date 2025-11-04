@@ -1,14 +1,15 @@
 package com.example.mas.comedian;
 
-
-import com.example.mas.shared.CustomGrpcThing;
+import com.google.adk.web.AdkWebServer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Import;
 
 @SpringBootApplication
-@CustomGrpcThing
+@Import(AdkWebServer.class)
 public class ComedianApplication {
-    public static void main(String[] args) {
+    static void main(String[] args) {
+        System.setProperty("adk.agents.loader", "none");
         SpringApplication.run(ComedianApplication.class, args);
     }
 }
