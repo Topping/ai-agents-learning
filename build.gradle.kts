@@ -32,9 +32,11 @@ subprojects {
     }
 
     dependencies {
-        add("implementation","org.slf4j:slf4j-api:2.0.17")
+        //add("implementation","org.slf4j:slf4j-api:2.0.17")
+        add( "implementation", "ch.qos.logback:logback-classic:1.5.20" )
         add("implementation", "org.springframework.grpc:spring-grpc-spring-boot-starter")
         add("implementation", "io.grpc:grpc-services")
+
     }
 
     tasks.withType<Test> { useJUnitPlatform() }
